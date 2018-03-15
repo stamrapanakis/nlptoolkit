@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- See the link http://logback.qos.ch/manual/configuration.html for reference -->
+<configuration>
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+    
+    <appender name="ConsoleFileAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- See http://logback.qos.ch/manual/layouts.html for more patterns -->
+            <pattern>%d{HH:mm:ss} [%thread] %-5level %logger{5} - %method %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="RootFileAppender" class="ch.qos.logback.core.FileAppender">
+        <file>nlptoolkit.log</file>
+        <!-- encoders are assigned the type 
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+          <pattern>%relative [%thread] %level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <logger name="ConsoleFileAppender" level="INFO" />
+    <logger name="RootFileAppender" level="INFO" />
+    
+    <!-- The default level is DEBUG-->
+    <root level="INFO">
+        <appender-ref ref="ConsoleFileAppender" />
+        <appender-ref ref="RootFileAppender" />
+    </root>
+</configuration>

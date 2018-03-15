@@ -1,0 +1,212 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>gr.atc.common</groupId>
+  <artifactId>nlptoolkit</artifactId>
+  <version>2.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>nlptoolkit</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <slf4j.version>1.7.12</slf4j.version>
+      <logback.version>1.1.3</logback.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.10</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+        <groupId>edu.cmu.cs</groupId>
+        <artifactId>ark-tweet-nlp</artifactId>
+        <version>0.3.2</version>
+    </dependency>
+    
+    <dependency>
+	<groupId>tw.edu.ntu.csie</groupId>
+	<artifactId>libsvm</artifactId>
+	<version>3.17</version>
+    </dependency>            
+    
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>${logback.version}</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>${logback.version}</version>
+    </dependency>
+    
+    <dependency>
+	<groupId>commons-collections</groupId>
+	<artifactId>commons-collections</artifactId>
+	<version>3.2.1</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>edu.stanford.nlp</groupId>
+        <artifactId>stanford-corenlp</artifactId>
+        <version>3.4</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.apache.lucene</groupId>
+        <artifactId>lucene-benchmark</artifactId>
+        <version>4.3.0</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-core</artifactId>
+      <version>4.3.0</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.apache.lucene</groupId>
+        <artifactId>lucene-analyzers</artifactId>
+        <version>3.5.0</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.hadoop</groupId>
+      <artifactId>hadoop-core</artifactId>
+      <version>1.1.2</version>
+    </dependency>
+    
+    <!--
+    <dependency>
+        <groupId>cc.mallet</groupId>
+        <artifactId>mallet</artifactId>
+        <version>2.0.8-SNAPSHOT</version>
+    </dependency>-->
+    
+    <dependency>
+        <groupId>net.sf.trove4j</groupId>
+	<artifactId>trove4j</artifactId>
+	<version>2.0.2</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.apache.jena</groupId>
+	<artifactId>apache-jena-libs</artifactId>
+        <type>pom</type>
+	<version>2.11.1</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>2.2.4</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>net.sf.flexjson</groupId>
+        <artifactId>flexjson</artifactId>
+        <version>3.2</version>
+    </dependency>
+    
+<!--    <dependency>
+        <groupId>eu.socialsensor</groupId>
+        <artifactId>socialsensor-framework-client</artifactId>
+        <version>0.2.1-SNAPSHOT</version>
+    </dependency>-->
+    <dependency>
+      <groupId>org.apache.mahout</groupId>
+      <artifactId>mahout-core</artifactId>
+      <version>0.8</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-suggest</artifactId>
+      <version>4.0.0</version>
+    </dependency>
+    <dependency>
+        <groupId>eu.alethiometer</groupId>
+        <artifactId>greek-nlp</artifactId>
+        <version>1.0</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>com.univocity</groupId>
+        <artifactId>univocity-parsers</artifactId>
+        <version>1.5.6</version>
+    </dependency>    
+  </dependencies>
+  
+  <build>
+      <resources>
+          <resource>
+              <directory>src/main/resources</directory>
+              <filtering>true</filtering>
+          </resource>
+      </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build> 
+  <repositories>
+        <repository>
+            <id>prometheus-atc-releases</id>
+            <name>prometheus-atc-releases</name>
+            <url> http://prometheus.atc.gr:8080/nexus/content/repositories/releases/</url>
+            <releases>
+                <updatePolicy>always</updatePolicy>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>prometheus-atc-snapshots</id>
+            <name>prometheus-atc-snapshots</name>
+            <url>http://prometheus.atc.gr:8080/nexus/content/repositories/snapshots/</url>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository> 
+        
+        <repository>
+            <url>http://repo1.maven.org/maven2/</url>
+            <id>junit_4</id>
+            <layout>default</layout>
+            <name>Repository for library Library[junit_4]</name>
+        </repository>
+    </repositories>  
+  
+    <distributionManagement>
+        <repository>
+            <id>prometheus-atc</id> 
+            <name>prometheus-atc-releases</name> 
+            <url>http://prometheus.atc.gr:8080/nexus/content/repositories/releases/</url> 
+        </repository>
+        <snapshotRepository>
+            <id>prometheus-atc</id> 
+            <name>prometheus-atc-snapshots</name> 
+            <url>http://prometheus.atc.gr:8080/nexus/content/repositories/snapshots/</url> 
+        </snapshotRepository>
+    </distributionManagement>  
+</project>
