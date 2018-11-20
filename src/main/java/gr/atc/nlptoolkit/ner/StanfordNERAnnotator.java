@@ -7,6 +7,7 @@ import edu.stanford.nlp.ie.crf.CRFClassifier;
 import edu.stanford.nlp.ling.CoreLabel;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -41,6 +42,37 @@ public class StanfordNERAnnotator {
         String namedEntityModelFilePath = modelDataPath+"/classifiers/english.all.3class.distsim.crf.ser.gz";
         nerClassifier = CRFClassifier.getClassifierNoExceptions(namedEntityModelFilePath);
         LOGGER.trace("Stanford NER classifier has been initialized.");
+    }
+    
+    /**
+     * 
+     * @param textList
+     * @return 
+     */
+    public List getPersonAndOrganizationEntities(final List<String> textList) {
+        
+        List<String> entities = new ArrayList();
+        if (CollectionUtils.isNotEmpty(textList)) {
+            
+            for (String text:textList) {
+                
+                if (StringUtils.isNotBlank(text)) {
+                    // If the text contains /n character, replace it with '. '
+                    text = text.replaceAll("\n", ". ");
+
+                    String annotateWithInlineXML = nerClassifier.classifyWithInlineXML(text);
+                    if (StringUtils.isBlank(annotateWithInlineXML)) {
+                        annotateWithInlineXML = text;
+                        LOGGER.error("Stanford NER classifier returned an empty string instead of {}", text);
+                    }
+
+//                    List<String> locationTokens = getEntities(annotateWithInlineXML, "<LOCATION>");
+                    entities.addAll(getEntities(annotateWithInlineXML, "<PERSON>"));
+                    entities.addAll(getEntities(annotateWithInlineXML, "<ORGANIZATION>"));
+                }
+            }
+        }
+        return entities;
     }
     
     /**
